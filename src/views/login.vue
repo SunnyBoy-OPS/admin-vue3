@@ -48,7 +48,7 @@
 
 <style lang="css" scoped>
   .login-container {
-    background-image: url("../assets/images/background.jpg");
+    background-image: url("../assets/images/logo.jpg");
     height: 100%
   }
   .login-form {
