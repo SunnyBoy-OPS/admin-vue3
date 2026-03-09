@@ -24,7 +24,8 @@ export default defineConfig({
         host: '0.0.0.0',
         port: 5002,
         https: false,
-        open: false,    //是否打开游览器
+        //是否打开游览器
+        open: false,
         proxy: {
             "/api": {
                 target: 'http://localhost:5001',

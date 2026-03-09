@@ -1,25 +1,61 @@
-import {createRouter, createWebHashHistory, createWebHistory} from 'vue-router'
-import Login from "@/views/login.vue";
-import Home from "@/views/home.vue";
+﻿import { createRouter, createWebHistory } from 'vue-router'
 
-/**
- * 路由表
- */
 const router = createRouter({
-    //去掉url中的#
-    history: createWebHistory(),
-    routes:[
+  history: createWebHistory(),
+  routes: [
+    {
+      path:"/",
+      redirect: '/login',
+      component: () => import('@/views/login.vue'),
+    },
+    {
+      path: '/login',
+      component: () => import('@/views/login.vue'),
+    },
+    {
+      path: '/',
+      component: () => import('@/views/home.vue'),
+      redirect: '/home',
+      children: [
         {
-            path:'/login',
-            //处理@引入问题在vite.cinfig,js里面
-            component: ()=> import('@/views/login.vue'),
+          path: '/home',
+          component: () => import('@/views/home-home.vue'),
         },
         {
-            path:'/home',
-            component: Home
+          path: '/dashboard',
+          component: () => import('@/views/dashboard.vue'),
         },
-    ]
+        {
+          path: '/exec/task',
+          component: () => import('@/views/exec-task.vue'),
+        },
+        {
+          path: '/exec/template',
+          component: () => import('@/views/exec-template.vue')
+        },
+        {
+          path: '/exec/transfer',
+          component: () => import('@/views/exec-transfer.vue')
+        },
+        {
+          path: '/system/loginLog',
+          component: () => import('@/views/system-loginLog.vue')
+        },
+        {
+          path: '/system/account',
+          component: () => import('@/views/system-account.vue')
+        },
+        {
+          path: '/system/role',
+          component: () => import('@/views/system-role.vue')
+        },
+        {
+          path: '/system/set',
+          component: () => import('@/views/system-set.vue')
+        },
+      ],
+    },
+  ],
 })
 
-//导出路由
 export default router
