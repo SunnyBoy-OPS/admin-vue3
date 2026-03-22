@@ -64,7 +64,13 @@
       proxy.$api.login(loginForm.value).then((res) => {
           const ok = res.data.code === 200 || res.code ===200;
           if (ok){
+            const token = res.data.token
+            localStorage.setItem('token',token)
+            console.log('res = ',res)
+            console.log('res.data = ',res.data)
+            console.log('res.data.token = ',res.data.token)
             open1()
+
             router.push("/home")
            // console.log("登录成功",res)
           }else {

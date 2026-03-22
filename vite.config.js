@@ -23,10 +23,12 @@ export default defineConfig({
     server: {
         host: '0.0.0.0',
         port: 5002,
+        strictPort: true,
         https: false,
         //是否打开游览器
         open: false,
         proxy: {
+            // 与后端接口绑定的地址
             "/api": {
                 target: 'http://localhost:5001',
                 changeOrigin: true,

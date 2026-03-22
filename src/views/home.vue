@@ -75,6 +75,25 @@
 
           <span class="route-path">{{ currentRouteLabel }}</span>
         </div>
+
+        <!--头部栏-右侧-->
+        <div class="header-right">
+          <div class="ops-user">
+            <el-icon class="ops-icon">
+              <UserFilled />
+            </el-icon>
+
+            <div class="ops-meta">
+              <div class="ops-name">运维管理员</div>
+              <div class="ops-role">SRE生产环境</div>
+            </div>
+
+          </div>
+
+          <!--退出-->
+          <el-button type="primary" @click="handleLogout" >退出</el-button>
+        </div>
+
       </el-header>
 
       <!--主体栏-->
@@ -90,9 +109,11 @@
 </template>
 
 <script setup>
-import { Expand, Files, Fold, House, Setting, Sunny } from "@element-plus/icons-vue";
+import {Expand, Files, Fold, House, Setting, Sunny, UserFilled} from "@element-plus/icons-vue";
 import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
+import router from "@/router/router.js";
+import {ElMessage} from "element-plus";
 
 // 侧边栏展开和折叠
 const isCollapse = ref(false);
@@ -121,9 +142,66 @@ const toggleCollapse = () => {
     collapseBtnClass.value = "Fold";
   }
 };
+
+// 退出操作
+const handleLogout = () =>{
+  localStorage.removeItem('token')
+  ElMessage.success('已退出登录')
+  router.push("/login")
+
+}
 </script>
 
 <style scoped>
+/* 头部栏-右侧 */
+.header-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 30px;
+  margin-right: 10px;
+}
+
+.ops-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  border: 1px solid #e5e7eb;
+  background: #f8fafc;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* hover效果 */
+.ops-user:hover {
+  background: #f1f5f9;
+  border-color: #cbd5f5;
+}
+
+.ops-icon {
+  font-size: 28px;
+  color: #475569;
+}
+
+.ops-meta {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.ops-name {
+  font-size: 14px;
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.ops-role {
+  font-size: 12px;
+  color: #64748b;
+}
+/* .##############################################.. */
 .home-container {
   height: 100%;
 }

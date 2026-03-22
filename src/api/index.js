@@ -7,10 +7,16 @@ export default {
     //登录
     login(params){
         return request({
-            //url: '/sysAdmin/login',
-            url: '/login',
+            //url: '/login',
+            url: '/logintoken',
             method: "POST",
             data: params
-        })
+        },
+        {
+            url: '/users',
+            method: "POST",
+            data: params
+        },
+        )
     }
 }
